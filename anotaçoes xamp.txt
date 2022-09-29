@@ -1,0 +1,15 @@
+http://127.0.0.1
+http://localhost 
+
+acesso a servidor local
+
+criar uma pagina dentro do local xamp no disco "c:" c:>xamp>htdocs>nome_da_pasta 
+
+e usar os links de servidor local acima com o nome da pasta criada
+ 
+exemplo: http://localhost/nome_da_pasta
+
+se o navegador parar de atualizar as modificação (principalmente de css)
+apagar historico do navegador em questao 
+
+Melhor codificação caracteries: utf8_general_ci

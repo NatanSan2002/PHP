@@ -1,0 +1,324 @@
+
+Por favor, desconsidere as prováveis gafes de definição contidas aqui, uso elas apenas para "fast check" sobre cada comando e sua sintaxe, quando quero uma informação mais detalhada e certa, geralmente busco em sites especializados para isso, como o "W3Schools".
+
+
+
+
+(se um codigo utiliza a linguagem php dentro ele tem que ser no formato.php)
+
+** Tags html podem ser utilizadas dentro do php, basta utilizar um "" com a tag dentro, exemplo: "<br>" com a concatenação de ponto: .)
+
+** se uma Tag html dentro do php tiver uma class,id ou algo que use o ="aspas duplas" substitua-os por 'simples'   exemplo: "<span class='nome'> </span>"
+
+<?php conteudo de codigos ?> ||| Sintaxe mais usada para inserir codigos php
+
+echo "conteudo" ||| saida, exibição de conteudo no navegador 
+
+print "conteudo" ||| saida, exibição de conteudo no navegador (msm coisa do comando echo)
+
+include "nome do arquivo.php" ||| inclue o conteudo da pagina.php referida  
+
+// conteudo ||| Comentario em PHP (dentro da sintaxe <?php ?>)
+
+# conteudo ||| Comentario em PHP (dentro da sintaxe <?php ?>)
+
+/* conteudo */ ||| Comentario em PHP (dentro da sintaxe <?php ?>)
+
+$conteudonome = conteudo ||| Atribuição de Variavel 
+
+echo $nomedavariavel ||| Saida, Exibição, Chamada do conteudo da variavel 
+
+(Para executar um conteudo de uma variavel em qlq situação é necessario o $com o nome da variavel) 
+
+var_dump($nomedavariavel) ||| Depurifica, informa o formato do conteudo dentro da variavel
+
+$var1 . "e" . $var2 . "e tambem" . $var3 . $var4 ||| concatenação de variaveis (para mostrar resultado usar em um echo/print)
+
+$var1 .= $var2 ||| concatenação para a variavel, $var1 recebe a junção com o conteudo da $var2
+
+"aspas duplas" vs 'aspas simples' ||| "aspas duplas" interpreta até os valores de uma variavel se estiver dentro dela, enquanto a 'simples' não, mostra a string pura  
+
+$nomevar = null ||| atribuir valor NULO para variavel
+
+(int)conteudo ||| converte o conteudo numerico para o tipo Inteiro
+
+define ("NOMECONSTANTE",conteudo) ||| Atribuição de Constante  (é bom que o nome da CONST seja sempre em MAISUCULO para identificação) 
+
+Para imprimir o conteudo da CONST em um echo teria que ser usado uma concatenação dentro do " aspas duplas"
+
+exemplo: echo "O VALOR DA CONST É = ".NOMECONSTANTE." obg"
+
+   *Para Imprimir valores de contas no Echo faze-las dentro de um (parenteses) exemplo: echo (10-5)
+
+nome da var tipo numerica exemplo: n
+
+$n++ ||| Pós Incremento, Variavel recebe mais 1 em seu valor depois da execução (de toda a linha?) 
+
+$n-- ||| Pós Decremento, Variavel subtrai menos 1 em seu valor depois da execução (de toda a linha?) 
+
+++$n ||| Pré Incremento, Variavel recebe mais 1 em seu valor Antes da execução (de toda a linha?)
+
+--$n ||| Pré Decremento, Variavel subtrai menos 1 em seu valor Antes da execução (de toda a linha?)
+
+
+$n+= conteudo numerico - Soma o valor informado a Variavel
+
+$n-= conteudo numerico - Subtração do valor informado a Variavel 
+
+$n*= conteudo numerico - Multiplica o Valor informado a Variavel
+
+$n/= conteudo numerico - Divide o valor informado a Variavel
+
+Daria o msm se fosse feito: $n = $n+2 (tds operadores)
+
+tmb poderia fazer as operaçoes com valores de outras variaveis exemplo: 
+
+$n = 10;
+$n2 = 2;
+
+$n+= $n2 //12 
+
+------------------------------------
+
+Operadores Condiçonais  PHP
+
+==   Igual
+===  Identico
+!=   Não Igual 
+<>   Diferente 
+!==  Não Identico 
+>    Maior
+<    Menor
+>=   Maior Ou Igual
+<=   Menor Ou Igual
+
+Operadores Logicos PHP
+
+and    E
+or     OU
+xor    Condiçoes Diferentes 
+!      Condição Não verdadeira(NOT)
+&&     E(AND)
+||     OU(OR)
+
+
+***estrutura para fazer um var_dump e ver o resultado da condição: $d= (($a<=$b) and ($a<=$c)) 
+var_dump($d)*** ||| pois operadores logicos em nome como o "xor" precisam do () maior entre as condiçoes logicas
+
+
+$exemplo = (5<10) ? conteudo se for Verdadeiro : conteudo se for Falso ||| Se a condição for verdadeira a var "$exemplo" recebe o (Conteudo Se For Verdadeiro)e se a condição for Falsa
+
+a var "$exemplo" recebe o (Conteudo Se For Falso)
+
+
+if (conteudo de condição) { comando de execução se verdadeira} ||| If, Se a (condição) for VERDADEIRA executa o comando dentro do {bloco}
+
+if () {} else {comando de execução se condição falsa} ||| Else, se a (condição) for FALSA executa o comando dentro do {bloco} else
+
+if(primeira condição) {} elseif (outra condição){comando se a outra condição for verdadeira } elseif(outra condição) (comando se a outra condição for verdadeira) else{comando se nenhuma das condiçoes forem verdadeiras}
+||| ELSEIF, Tenta uma serie de IFs e se nenhum bater com as condiçoes executa o ultimo Else no final(Esse ultimo Else é obrigatorio, só em php?)
+
+
+$var1 =isset($_GET["var1"])?$_GET["var1"]:0; ||| Pega o valor na URL(as variaveis são a mesma)
+                                          
+                                         :1;(se for multiplicar)
+                                         :"";(String)
+
+nome_da_pag.php?var1=79 ||| a var recebeu o numero 79 pela URL (Se for um conteudo tipo String Não precisa colocar "aspas" na URL )
+
+switch ($nomevar){case "conteudo": execução de comandos; break; case "outro conteudo" execução de comandos; break; default: execução de comandos se todos os casos anteriores forem falsos} 
+
+||| switch, escolhe uma ($var) e depois verifica usando os "case:" se ela é/tem especificamente tal conteudo, se sim executara a linha de comandos programada até o break que é pra parar,
+
+assim colocando quantos cases quiser até que quando não tiver mais alternativas colocar o "default" se nenhum dos casos forem verdadeiros.
+
+
+while (conteudo de condição) {execução de comandos} ||| While, Loop, Enquanto tal (condição) for Verdadeira executa os comandos do {bloco} (Para por um fim nesse loop na execução do comando alterar o valor de um dos conteudos da condição)
+
+do while () {} ||| Do While, msm coisa do While ''normal'' só que executa o comando pelo menos UMA vez antes
+
+for ($var = valor inicial; $var<=10; $var++){execução de comandos} ||| For, While comprimido sendo que: 
+
+(Declaração de var e seu valor;   Enquanto tal condição for verdadeira; Incremento/Alteração de um dos conteudos da Condição Depois da execução dos comandos no {bloco}    )
+
+
+(LOOPING DENTRO DE OUTRO LOOPING:
+Resumindo o loop de Dentro é repetido quantas vezes ele foi programado 
+até que quando acaba volta para o Loop de fora denovo 
+que Manda o de Dentro fazer o mesmo loop denovo assim até a condição do Loop de fora acabar)
+
+
+
+$nomevar [0] = conteudo; $nomevar [1] = conteudo; $nomevar [2] = conteudo; ||| Array, variavel com varios valores em vetores diferentes (método solo)
+
+$nomevar = array(conteudo,conteudo,conteudo,etc) ||| array metodo 2
+
+$nomevar[]=conteudo ||| array metodo 3
+
+
+(ai para pegar o valor de um Vetor especifico ficaria: $nomevar[num do vetor] )
+
+(O Numero de localização dos Vetores começa sempre apartir do 0 em PHP)
+
+
+$nomevar = array("nome do vetor" => conteudo, "nome do vetor" => conteudo, "nome do vetor" => conteudo ) ||| Array associativo, Vetores com o nome/localização em "String"
+
+
+$nomevar = array (array (conteudo1,conteudo2), array (conteudo3,conteudo4), array (conteudo5,conteudo6) ) ||| Array Bimendisional, Array com outros Arrays dentro
+                   (0)      (0)       (1)       (1)      (0)       (1)       (2)      (0)       (1)
+             
+(para resgatar valores seria exemplo: echo $nomevar[0][1]; vai pegar o array (0) e depois, dentro dele o vetor (1) o conteudo 2 )
+                                                 
+
+
+print_r ($nomevar) ||| Visualiza todos os vetores de uma Array
+
+nota ***:  echo "<pre>";print_r($nomevar);echo "</pre>"; ||| print_r só que com melhor visualização
+
+
+
+foreach($arrayvar as $simplesvar){ comando com a $simplesvar} ||| Atribui os vetores de uma Var Array para uma Var Simples e faz uma execução de Vetor por Vetor até acabar (é um loop)
+
+
+exemplo**  foreach($arrayvar as $simplesvar){echo $simplesvar. "<br>";} ||| Vai escrever os conteudos da $simplesvar (que foram pegos dos vetores da var array) um por um até o ultimo vetor
+
+
+foreach($arrayvar as $simplesvar => $simplesvar2){comandos com as $simplesvar} ||| Pega um array do tipo  Vetores com nomes em "str" e joga os nomes dos vetores para a "$simplesvar" com o AS, e os conteudos dos vetores para a "$simplesvar2" com o =>
+
+
+count($arrayvar) ||| Conta quantos vetores tem dentro de uma var array (atribuir a uma var para ficar com o valor da contagem salvo)
+
+
+array_unique($arrayvar) ||| Conta quantos vetores tem dentro de uma var Array excluindo conteudos repetidos
+
+
+
+asort($arrayvar)  ||| Ordena por Ordem alfabetica os valores de uma var Array (SEM mexer na posição dos vetores: 0,1,2 etc)
+
+sort($arrayvar)   ||| Ordena por Ordem alfabetica os valores de uma var Array, Mudando inclusve a posição dos vetores 
+
+arsort($arrayvar) ||| Ordena por Ordem alfabetica contraria os valores de uma var Array (SEM mexer na posição dos vetores: 0,1,2 etc)
+
+krsort($arrayvar) ||| Ordena Por ordem numerica decrecente da posição dos vetores
+
+
+(SORTS Mudam De fato a ordenação geral do Array, sem precisar atribuir a uma var antes ou etc)
+
+
+
+
+phpinfo() ||| Mostra todas as configuraçoes do PHP Executado
+
+
+$GLOBALS ||| Pega qualquer conteudo do site
+
+exemplo* echo $GLOBALS["nome_var"] ||| Var Comum(ps: nome da var sem "$")
+
+echo $GLOBALS["nome_var"][numero_vetor] ||| Var Tipo Array 
+
+
+$_SERVER{conteudo} ||| Exibi informaçoes Servidor?
+
+
+
+(HTML) <form method="get" action="pagina_onde_sera_enviado.php"> <input type="tipo_do_input" name="conteudo_nome"/> <input type="submit" value="conteudo"/> </form> (se for ficar na msm pagina deixar o action="" vazio)
+
+
+||| Formulario HTML que usa o Metodo GET: pega os dados inseridos (input digitado e seu name= identificador) e manda-os para a pagina.php referenciada no action= (input submit)
+
+
+$_GET["name_do_input_pego"] ||| Pega o Conteudo do input com o name em questão (atribuir o comando a uma var para agilizar a pega dql dado)
+
+
+$_POST["name_do_input_pego"] ||| Metodo POST, mesma coisa do GET porem não exibi os dados na URL
+
+(No Formulario do HTML colocar: method="post")
+
+
+$nomevar = isset ($_GET["name_input"])? $_GET["name_input"]: " conteudo se for falso" ||| Isset, condição que verifica se o GET referido tem um dado ou não, se tem dado faz algo se não faz outro.
+
+
+
+**Exemplo: isset  ''É Verdade que''  ($_GET["name_input"])  ''tem um dado''   ?   ''Se SIM a $nomevar recebe''  $_GET["name_input"] :  ''Se NÃO a $nomevar recebe ''  "Sem Valor"
+
+       
+(Isset é mais usado para não dar erros caso o GET referido não tenha pego nenhum dado, ai trocaria o dado desse GET por uma "mensagem" generica por exemplo)
+
+
+
+
+** Quando for usar um dado ou comandos do php em um lugar do HTML, CSS colocar dentro do campo <?php  ?> suas instruçoes
+
+** exemplo CSS:     <style> span.texto {font-size: <?php $var_tamanho ?>;} </style> 
+
+** exemplo HTML:    <h1> <?php echo "Conteudo Da $var_tal"; ?> </h1>
+
+
+
+exit ||| Não executa os codigos Posteriores a esse comando
+
+
+
+
+
+
+--CONEXÃO BANCO DE DADOS--
+
+$nomevar = new mysqli (conteudo_Hostname, conteudo_Usuario, conteudo_Senha, conteudo_Nome_Banco) ||| Conexão Com o Banco MYSQLI, é melhor criar uma $var para cada conteudo pedido e coloca-las.
+
+
+Exemplo**  
+
+$hostname = "localhost";         ||| Nome do Hosteador, "localhost" seria o servidor local, na propria maquina.
+$usuario = "root";               ||| Nome de Usuario, "root" é o padrao SQL.
+$senha = "";                     ||| Senha, vazia é o padrao SQL, na hora da colocação só declarar em "string" e deixar vazio
+$bancodedados = "testephp";      ||| Nome do Banco, (Do BANCO* Não da Tabela*)
+
+
+$mysqli = new mysqli ($hostname, $usuario, $senha, $bancodedados);
+
+
+if($mysqli->connect_errno) {echo "exibir mensagem de erro da conexão" . $mysqli->connect_errno. "-" . $mysqli->connect_error;} ||| IF que verifica se houve algum na conexão, o mostrando-o
+
+
+
+$nomevar = $mysqli->real_escape_string($_GET['busca']); ||| Deixa o metodo GET seguro para interagir com dados do Banco ($mysqli é a var da conexão do banco )
+
+
+exemplo* Quando fosse pegar algo do banco com o GET usaria a segurança do comando "real_escape_string" em uma var: SELECT * FROM nome_tabela WHERE dado LIKE'%$nomevar_real_escape%'
+
+
+
+$mysqli->query($var_comando_sql) or die("Mensagem Caso Haja algum Erro No Comando".$mysqli->error); ||| Comando Para Verificar Se Houve Algum Erro no Comando do Banco de dados MYSQL (atribuir a uma var para agilizar)
+
+
+nota* "$var_comando_sql" seria um Var que teria os comandos do banco de Dados: "SELECT * From" por exemplo (comandos em SQL tem que estar "entre aspas" no php)
+
+
+if($var_query -> num_rows == 0) {Comando Se Verdadeiro} ||| If com num_rows, verificara quantos dados o Comando do banco de dados Pegou, se foi 0 executaria o comando do {bloco} ($var_query seria a do comando: $mysqli->query($var_comando_sql)...)
+
+
+
+while($nomevar = $var_query->fetch_assoc()) { Comandos ENQUANTO a $nomevar receber dados da pesquisa do comando do banco de dados} 
+
+||| While com fetch_assoc, fetch_assoc manda todos os dados pego do Comando em questão (var_query) para a "$nomevar" 
+   
+Enquanto tiver dados e ele  mandar para a var ele executa a ação do {bloco} (que poderia ser uma exibição dos dados pego por exemplo usando a tal "$nomevar" que recebeu o dado)
+
+ 
+
+
+
+
+
+
+**Voce pode interligar comandos em php com sequencia em CSS/ HTML:
+
+Exemplo** <?php   if(5>4)  {  ?>   <h1> 5 É MAIOR QUE QUATRO </h1>  <?php   }  ?>   ||| No Caso um If fez uma condição que deu verdadeira e a ação do bloco foi em HTML, dps abriu outro <?php e terminou o bloco} do if   
+ 
+
+
+
+
+
+

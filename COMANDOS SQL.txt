@@ -1,0 +1,374 @@
+
+Por favor, desconsidere as prováveis gafes de definição contidas aqui, uso elas apenas para "fast check" sobre cada comando e sua sintaxe, quando quero uma informação mais detalhada e certa, geralmente busco em sites especializados para isso, como o "W3Schools".
+
+
+
+(Quando clickar no + no "Oracle SQL Devolper" no nome de usario colocar "system" de primeira vez)
+
+
+conteudo ; conteudo - ; para terminar comando anterior (pode se usar / tmb) *** AMBIENTE DOS   SQLPLUS  ***
+
+
+-- conteudo ||| comentario BDD
+
+encerrar comando com uma , 
+
+CREATE USER conteudo IDENTIFIED BY conteudo  - Criar nome de Usuario e informar senha
+
+GRANT  ||| permissão
+
+GRANT CONNECT TO conteudo  ||| Dar permissão pra tal usuario se conectar 
+
+GRANT RESOURCE TO conteudo ||| Permitir Recurso a tal usuario
+
+GRANT CREATE VIEW TO conteudo  ||| Permitir Visualização a tal usuario
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE conteudo_nome ||| Criar tabela e o nome da mesma
+
+(
+conteudo NUMBER(numero digitos, casas decimais) ||| Define que o conteudo é do tipo "numerico" e o tamanho maximo de digitos(sendo que depois da virgula é o numero de casas decimais)
+
+*Exemplo: Nota NUMBER(2,1) (no caso o numero inteiro da nota vai até 10(2 digitos) e o numero quebrado "dps da virgula" vai até 9(só 1 digito). assim: 10,9)
+
+ 
+conteudo CONSTRAINT nome_da_constraint ||| Nomeia de forma manual as Restriçoes(constraints) de um campo. (O campo tem que ter Restriçoes dentro dele)
+
+conteudo NOT NULL ||| Conteudo não pode ser NULO, tem que ter algum dado
+
+conteudo VARCHAR(conteudo numerico) ||| Define que o conteudo é do tipo texto,str, e o maximo de caracteries que tera
+
+conteudo UNIQUE ||| conteudo UNICO na tabela, que não se repete
+
+conteudo PRIMARY KEY ||| Define que o conteudo será a chave primaria
+
+conteudo_GENERO VARCHAR(1)  CHECK (GENERO IN ('M','F','m','f')) ||| Da Condiçoes limitadas,precisas pro conteudo
+
+conteudo DATE ||| define que o conteudo é do tipo DATA
+
+conteudo REFERENCES nome_da_tabela da chave primaria ||| conteudo como Chave Estrangeira 	
+
+)
+
+
+
+Voce tmb pode colocar os comandos de um campo separado da linha mas referenciando
+exemplo: RA NUMBER(10)
+
+PRIMARY KEY(RA) com execeção de alguns comandos como NOT NULL, ai tem que ser só na msm linha msm)
+
+FOREIGN KEY(campo_referenciado para chave estrangeira) REFERENCES nome_da_tabela da chave primaria ||| Conteudo como Chave Estrangeira,
+
+pega o valor de uma chave primaria de outra tabela e transfere para a chave estrangeira. 
+
+PRIMARY KEY (campo_referenciado1, campo_referenciado2, campo_referenciado3) ||| Chave Composta
+
+
+
+(fz os comandos abaixo solo para não dar conflito com outro, OU Seleciona-los só eles com o efeito azul do mouse e executar)
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+ALTER TABLE nome_da_tabela ||| comando para fazer mudanças em uma tabela ja existente
+
+ADD ||| Adiciona mais um campo a tabela 
+(
+RG NUMBER (9)
+)
+
+**NOTA, se voce for ADD uma especificação/restrição (como um atributo UNIQUE ou PRIMARY KEY a algum conteudo) no ADD do ALTER TABLE
+Devesse faze-lo no modo Referencia exemplo ADD(PRIMARY KEY(RG))  com excessão do tal NOT NULL ai só no metodo MODIFY**
+
+MODIFY ||| Modifica as propriedades de um campo ja Existente na tabela
+(
+RG NUMBER (12)
+)
+
+DROP CONSTRAINT Nome_da_constraint ||| Apaga uma Constraint (esse comando não precisa do parenteses)
+
+DROP PRIMARY KEY ||| Apaga chave primaria da tabela (esse comando não precisa do parenteses)
+
+DROP COLUMN Nome_Da_Coluna ||| Apaga um campo inteiro (esse comando não precisa do parenteses)
+
+RENAME COLUMN nome_da_coluna TO novo_nome_da_coluna ||| Muda o Nome de um Campo (esse comando não precisa do parenteses)
+
+RENAME TO novo_nome_da_tabela ||| Muda o nome da Tabela  (esse comando não precisa do parenteses)
+      
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+INSERT INTO nome_da_tabela(campo1,campo2,campo3) VALUES (conteudo1,conteudo2,conteudo3) ||| Inseri Valores dentro dos campos definidos da tabela
+
+De acordo com o numeros de campos colocados no primeiro() vai ser o mesmo do VALUES, que no caso vão ser conteudos inseridos nos mesmos pela ordem
+
+Os conteudos inseridos no VALUES tem que seguir a regra estabelecida no campo, exemplo: conteudo1 é VARCHAR, inserir o valor dele com 'aspas simples'
+
+VALUES (conteudo1,NULL,NULL) ||| Se quando for inserir um conteudo no VALUES e ter um campo que voce não vai querer prencher colocar um: NULL no lugar 
+
+
+
+UPDATE nome_da_tabela ||| Modifica  dados ja inseridos em um campo
+
+SET nome_da_coluna = valor para ser alterado ||| Fala o nome da coluna onde vai ser a alteração 
+
+WHERE dado condicional para filtrar qual/quais linhas serão alteradas ||| Especifica em qual linha séra a alteração
+(exemplo* SET SALARIO = 2500  WHERE Nome Do Prof = 'RIBAMAR SERRA'
+
+(Se quiser Deixar sem valor algum dado especifico, fazer o mesmo procedimento e no SET colocar = NULL)
+
+
+
+DELETE FROM Nome_da_Tabela ||| Deleta TODOS os dados inseridos na Tabela
+
+WHERE dado condicional para filtrar qual/quais linhas serão deletadas ||| Especifica qual linha sera TODA deletada (para "remover" só uma é no metodo UPDATE)
+(se for apagar mais de uma linha usar o operador logico OR )  
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+SELECT nome_da_coluna, nome_de_outra_coluna, nome_de_outra_coluna  FROM nome_da_tabela ||| Query, Consulta de dados do banco
+
+
+
+
+
+Select nome_coluna, nome_coluna , nome_coluna ||| (de ambas as tabelas juntadas no Join, se o nome de uma coluna for igual em ambas coloca: nome_tabela.e_o_nome_do_campo)
+From nome_tabela1 INNER JOIN nome_tabela2     |||  Join, Junta duas tabelas em uma só.
+ON Tabela1.Campo_Igual = Tabela2.Campo_Igual  |||  On, Merito de organização das tabelas pelos dados incomuns de um campo
+
+
+select Renome.campo, Renome.campo, Renome2.campo
+from nome_tabela1 Renome  INNER JOIN nome_tabela2 Renome 2 ||| Renomeação de nomes da tabela para facilitação (Geralmente renomeia por A até Z)
+ON Renome.campo_Igual = Renome2.campo_Igual
+
+
+select Renome.campo, Renome.campo, Renome2.campo
+from nome_tabela1 Renome LEFT OUTER JOIN nome_tabela2 Renome 2 ||| Outer Join (left/right), Prioriza a tabela a Esquerda(left) do OUTER JOIN para trazer os dados (o Right seria a Direita)
+ON Renome.campo_Igual = Renome2.campo_Igual  (tmb tem o FULL JOIN que prioriza todas ao mesmo tempo)
+
+** Se for mais que Duas Tabelas Juntadas colocar um Join para cada tabela nova e Depois a causula ON para dizer o campo incomum
+
+
+
+
+WHERE Condição para filtrar dados ||| WHERE, Condição para filtrar dados na visualização (Ela SÓ é colocada DEPOIS do FROM)
+
+(exemplo WHERE coluna_SALARIO >= 2500: Na view só vai mostrar salarios maiores ou iguais que 2500)
+
+
+
+
+GROUP BY nome_da_coluna ||| separa em diversos grupos as linhas da coluna usando como base os valores em comuns de cada linha para a agrupação
+
+
+** se tiver uma coluna (normal) junto com funçoes de agregaçoes ela vai ser obrigada a estar no Group By
+
+**************************************************************************************************************************************
+Só serve se tiver FUNÇOES DE AGREGAÇÃO no Select: 
+
+max(nome_coluna)         ||| Pega a linha com o Maior valor de cada GRUPO
+
+min(nome_coluna)         ||| Pega a linha com o Menor valor de cada GRUPO
+
+sum(nome_coluna)         ||| Soma os valores de Todas as linhas de cada GRUPO
+
+avg(nome_coluna)         ||| Soma e depois divide todas as linha pela quantidade delas em cada GRUPO 
+
+count(*)                 ||| Conta todas as linhas de cada GRUPO (o * é mais Seguro para essa contagem. apesar que poderia usar o nome da coluna tmb)
+
+round(avg(nome_coluna))  ||| Arredonda o numero resultante
+
+
+exemplo sintaxe*  SELECT nome_coluna1, MIN(nome_coluna), count(*) FROM nome_da_tabela group by nome_coluna1
+
+****************************************************************************************************************************************
+
+
+Group by  HAVING  sum(nome_coluna) >= 5000 ||| HAVING, Comandos Condicionais para as funçoes de grupos (como um Where mesmo)
+
+
+
+ORDER BY nome_da_coluna  ||| ORDER, Ordena a ordem da visualização das colunas com base na coluna referida
+
+(sendo que se a coluna for text define por ordem alfabetica, se for numero ordem numerica etc... ORDER BY sempre tem que ser DEPOIS do SELECT e FROM ou WHERE)
+
+
+*****
+(Voce tambem pode colocar mais de um parametro de coluna no ORDER. exmp: ORDER BY nome_da_coluna1, nome_de_outra_coluna2
+
+assim a  Ordena primeiro com base no nome da primeira coluna que vc digitou "nome_da_coluna1" na visualização das colunas e se caso houver dados repetidos ordena com base na outra coluna digitada "nome_de_outra_coluna2"
+
+******
+
+
+Se for ultilizar todas as casulas acima no comando a ORDEM sempre é:
+
+1: SELECT 2: FROM 3: ON 4: WHERE 5: GROUP BY 6: HAVING 7: ORDER BY
+
+
+
+ORDER BY nome_da_coluna DESC ||| Ordena a visualização das colunas em Ordem Decrecente
+
+ 
+SELECT * ||| Exibe Todas As Colunas Da Tabela
+
+SELECT DISTINCT nome_da_coluna  || Destingue valores repetidos da coluna mostrando-os uma vez só
+
+SELECT nome_da_coluna AS conteudo de nome para view  ||| AS, Da um nome Temporario só para a visualização do nome das colunas 
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+RENAME nome_da_tabela TO novo_nome_da_tabela ||| Muda o o nome da tabela (metodo externo)
+
+
+DROP TABLE nome_da_tabela ||| excluir tabela
+ 
+
+DROP TABLE nome_da_tabela CASCADE CONSTRAINT ||| Exclui tabela indiferente das assoçiaçoes ligadas a ela
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE nome_da_tabela_a_ser_criada 
+AS SELECT nome_das_colunas FROM nome_da_tabela_a_ser_copiada    ||| Cria uma cópia de uma tabela ja existente (só constraints NOTNULL que são preservadas)
+
+(Pode colocar uma causala Where para filtrar quais linhas serao copiadas)
+
+INSERT INTO nome_da_tabela_a_ser_inserida(campo1,campo2,campo3)  
+SELECT campo1,campo2,campo3 FROM nome_da_tabela_copiada         ||| Copia Linhas(Dados) de Campos De Outra Tabela Em Outra 
+
+(Pode colocar uma causala Where para filtrar quais linhas serao copiadas)
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+FUNÇOES Só podem ser inseridas dentro de comandos DMl: Select, Inset, Update, E Delete (Comandos de Linhas) (que ficam pedentes pro rollback)
+
+
+Select CONCAT(Campo1, Campo2) ||| CONCAT, Função que Junta dados de dois Campos Diferentes (Como foi no SELECT ele só vai Mostrar os dados dos dois juntos)
+
+Select LOWER(Campo) ||| Lower, Deixa todas as letras do campo minusculas 
+
+Select UPPER(Campo) ||| Upper, Deixa todas as letras do campo em Maisculas 
+
+(poderia ser usado em um WHERE para forçar o campo a ficar em Maisculo/Minusculo e facilitar os criterios da busca)
+
+
+SELECT TO_CHAR(CampoData, 'DAY  DD/  MONTH/  YYYY') ||| TO_CHAR converte campo tipo Numero/Data para escrita, no caso DAY converte para o nome do Dia, Mouth para o nome do Mes, 
+
+                                                        alem de que poderia colocar "conteudos em aspas" no meio para acrecentar na exibição
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+SUBQUERY: Um Comando SELECT dentro de um (parenteses) que pode ser posto em qualquer lugar de um comando DML
+(Insert , Update , Delete , e Select msm)
+
+**Exemplo em um WHERE
+
+Select Ename, Sal, Deptno
+From Emp
+
+
+WHERE  SAL   IN   (SELECT MAX(SAL) FROM EMP GROUP BY DEPTNO)  
+
+||| No Caso o Where vai filtrar pela Coluna Sal e o comando Select dentro do (parenteses) (que foi um agrupamento e os salarios maximos de cada um)
+
+
+** Só serve se o Select (subquery) Tiver uma função de Agregação?? (como o Max)
+
+** A Unica Clausula que pode vim depois da Subquery é o Order By
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+VISÃO
+
+
+CREATE OR REPLACE VIEW Nome_Da_View      ||| Cria Uma Tabela apenas para visualização de uma tabela ja existente
+AS 
+SELECT campo1, campo2,campo3
+FROM Nome_Da_Tabela 
+WITH READ ONLY    ||| Restrição para comandos de modificaçao na View
+
+WITH CHECK OPTION ||| Alertar quando criterios minimos com clasula Where da tabela não forem batidos                       
+
+
+
+||| Alem que tabelas de Visão podem ter interação com qualquer comando como: Select, Update, Join, etc...
+
+exemplo:   Select campo1, campo2 From Nome_Da_Visão  Where Campo1 = algum coisa
+
+(LEMBRANDO Que se não for posto o comando de Restrição (WITH READ) na View esses comandos Tmb Afetam a tabela De Origem)
+
+
+
+DROP VIEW Nome_Da_Visão ||| Exclui Visão
+                                                                  
+ 
+
+ 
+
+-------------------------------------------------------------------------------OUTRAS INFORMAÇOES
+
+
+
+
+TABELA: Todo as informaçoes de tal Conteudo
+
+COLUNA: Uma parte generalizada desse Conteudo (ficam em "cima")
+
+LINHA: onde os dados são inseridos e são peculiares para cada usuario (são os que ficam no "meio" e ligados a cada Coluna depedendo do conteudo generalizado dela)
+
+ 
+OPERADORES Logicos: AND, OR, NOT etc...
+
+Condicionais: 
+
+=               Igual
+<>              Diferente
+>               Maior que
+<               Menor que 
+>=              Maior ou igual
+<=              Menor ou igual
+Between and     Comparaçoes entre dois valores  ||| IDADE BETWEEN  13 AND 22 ||| Pega os valores de DENTRO desse intervalo (Between é literalmente >= AND <=)
+
+IDADE NOT BETWEEN  13 AND 22 ||| Pega os valores de FORA desse intervalo (Not Between é literalmente < OR >)
+
+
+
+
+Na Aplicação: WHERE Dado_Do_Campo = 1 OR Dado_Do_Campo = 2
+
+(Operadores Logicos só são usados no Banco de dados geralmente em comandos WHERE, ja em outros só usaria virgula: comando tal, comando tal, comando tal , em vez de um "AND" Por exemplo)
+
+
+WHERE NOME IN ('MARCOS', 'ROBSON', 'JULIA') ||| IN, Pega todos os campos com esses valores (Mesma coisa do OR só que mais comprimido) (tem a versão NOT IN tmb)
+
+WHERE NOME LIKE '%letra' ||| Pega só os valores que Terminam com tal letra.  
+
+'letra%' pega só os valores que Começam com tal letra. 
+
+'%letra%' pega só os valores que Contenham tal letra em algum lugar.
+
+WHERE NOME LIKE '_letra' ||| Pega só a letra que esteja na segunda "casa" do NOME (e assim sucessivamente dependendo do numero de ____ pulados)
+
+WHERE nome_da_coluna IS NULL ||| Is para Filtrar por um dado Nulo
+
+ 
+SELECT CAMPO1 || ' - ' || CAMPO2 FROM nome_da_tabela ||| Junta dados de dois campos na visualização formatado com o espaço do ' - ' 
+
+
+
+
+COMMIT ||| Salva todas as alteraçoes pendentes/internas do Banco de Dados
+
+ROLLBACK ||| Retorna até o ultimo estado salvo do COMMIT
+
+SYSDATE ||| Pega a data do dia de Hoje (do sistema) e inseri em um campo tipo DATE
+ 
+Datas/ são sempres colocada com um 'aspas simples' nos comandos
+
+
+
