@@ -163,6 +163,8 @@ $nomevar[]=conteudo ||| array metodo 3
 
 $nomevar = array("nome do vetor" => conteudo, "nome do vetor" => conteudo, "nome do vetor" => conteudo ) ||| Array associativo, Vetores com o nome/localização em "String"
 
+$nomevar["nome do vetor"]; ||| Chamada De Vetor Array Associtativo
+
 
 $nomevar = array (array (conteudo1,conteudo2), array (conteudo3,conteudo4), array (conteudo5,conteudo6) ) ||| Array Bimendisional, Array com outros Arrays dentro
                    (0)      (0)       (1)       (1)      (0)       (1)       (2)      (0)       (1)
@@ -203,6 +205,39 @@ krsort($arrayvar) ||| Ordena Por ordem numerica decrecente da posição dos veto
 
 
 (SORTS Mudam De fato a ordenação geral do Array, sem precisar atribuir a uma var antes ou etc)
+
+array_push($arrayvar ,conteudo1 ,conteudo2 ,conteudo3 ); ||| Array_Push, Adiciona um ou mais valores ao final do array
+
+
+
+CLASSES 
+
+
+class Nome_Class {
+public $prop1;   ||| propriedades da Classe, "public" é o nivel de escopo da prop
+public $prop2;
+
+public function __construct ($conteudo1,$conteudo2){   ||| Método Construct, é executado toda vez que algum objeto é criado com base nessa Classe
+
+$this-> prop1 = $conteudo1;     ||| This, é a variavel prop dessa Classe que recebe o valor dos parametros do Método Construct
+$this-> prop2 = $conteudo2;
+
+$this-> NomeFuncao()  ||| Executa Função da Classe quando for ela instanciada, por estar no Construct
+}
+
+public function NomeFuncao(){ ||| Método da Classe (como não esta dentro do {} do Construct só executado se chamado mesmo )
+echo "Prop1: ". $this->prop1; 
+echo "Prop2".    $this->prop2;
+}
+
+}
+
+$objeto = new Nome_Class(conteudo1,conteudo2);  ||| Instanciando um objeto com base na Classe
+
+$objeto->NomeFuncao();  ||| Chamando um Método da Classe
+
+
+
 
 
 
