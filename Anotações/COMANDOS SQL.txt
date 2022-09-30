@@ -98,7 +98,9 @@ RENAME TO novo_nome_da_tabela ||| Muda o nome da Tabela  (esse comando não prec
 --------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-INSERT INTO nome_da_tabela(campo1,campo2,campo3) VALUES (conteudo1,conteudo2,conteudo3) ||| Inseri Valores dentro dos campos definidos da tabela
+INSERT INTO nome_da_tabela(campo1,campo2,campo3) VALUES (conteudo1,conteudo2,conteudo3), (conteudo1,conteudo2,conteudo3) ||| Inseri Valores dentro dos campos definidos da tabela
+
+*o ultimo parenteses são valores de outra linha
 
 De acordo com o numeros de campos colocados no primeiro() vai ser o mesmo do VALUES, que no caso vão ser conteudos inseridos nos mesmos pela ordem
 

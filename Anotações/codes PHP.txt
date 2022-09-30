@@ -16,8 +16,6 @@ echo "conteudo" ||| saida, exibição de conteudo no navegador
 
 print "conteudo" ||| saida, exibição de conteudo no navegador (msm coisa do comando echo)
 
-include "nome do arquivo.php" ||| inclue o conteudo da pagina.php referida  
-
 // conteudo ||| Comentario em PHP (dentro da sintaxe <?php ?>)
 
 # conteudo ||| Comentario em PHP (dentro da sintaxe <?php ?>)
@@ -237,7 +235,7 @@ $objeto = new Nome_Class(conteudo1,conteudo2);  ||| Instanciando um objeto com b
 $objeto->NomeFuncao();  ||| Chamando um Método da Classe
 
 
-
+$objeto->prop  ||| -> é a sintaxe para acessar os atributos/métodos de um objeto em PHP
 
 
 
@@ -294,7 +292,7 @@ exit ||| Não executa os codigos Posteriores a esse comando
 
 
 
-
+include "nome do arquivo.php" ||| inclue o conteudo da pagina.php referida  
 
 
 --CONEXÃO BANCO DE DADOS--
@@ -310,38 +308,45 @@ $senha = "";                     ||| Senha, vazia é o padrao SQL, na hora da co
 $bancodedados = "testephp";      ||| Nome do Banco, (Do BANCO* Não da Tabela*)
 
 
+
 $mysqli = new mysqli ($hostname, $usuario, $senha, $bancodedados);
 
 
-if($mysqli->connect_errno) {echo "exibir mensagem de erro da conexão" . $mysqli->connect_errno. "-" . $mysqli->connect_error;} ||| IF que verifica se houve algum na conexão, o mostrando-o
-
-
-
-$nomevar = $mysqli->real_escape_string($_GET['busca']); ||| Deixa o metodo GET seguro para interagir com dados do Banco ($mysqli é a var da conexão do banco )
-
-
-exemplo* Quando fosse pegar algo do banco com o GET usaria a segurança do comando "real_escape_string" em uma var: SELECT * FROM nome_tabela WHERE dado LIKE'%$nomevar_real_escape%'
+if($mysqli->connect_errno) {echo "exibir mensagem de erro da conexão" . $mysqli->connect_errno. "-" . $mysqli->connect_error;} ||| IF que verifica se houve algum erro na conexão, o mostrando-o
 
 
 
 $mysqli->query($var_comando_sql) or die("Mensagem Caso Haja algum Erro No Comando".$mysqli->error); ||| Comando Para Verificar Se Houve Algum Erro no Comando do Banco de dados MYSQL (atribuir a uma var para agilizar)
 
 
-nota* "$var_comando_sql" seria um Var que teria os comandos do banco de Dados: "SELECT * From" por exemplo (comandos em SQL tem que estar "entre aspas" no php)
+nota* "$var_comando_sql" seria um Var que teria os comandos do banco de Dados SQL: "SELECT * From" por exemplo 
+
+*comandos em SQL tem que estar "entre aspas" no php, e se dentro desse comando for buscado algo que seja string, coloca-la em 'aspas simples' ou vice-versa
 
 
-if($var_query -> num_rows == 0) {Comando Se Verdadeiro} ||| If com num_rows, verificara quantos dados o Comando do banco de dados Pegou, se foi 0 executaria o comando do {bloco} ($var_query seria a do comando: $mysqli->query($var_comando_sql)...)
+if($var_query -> num_rows == 0) {Comando Se Verdadeiro} ||| If com num_rows, verificara quantos dados o Comando do banco de dados Pegou, se foi 0 executaria o comando do {bloco} 
+
+*$var_query seria a do comando: $mysqli->query($var_comando_sql)...
 
 
 
-while($nomevar = $var_query->fetch_assoc()) { Comandos ENQUANTO a $nomevar receber dados da pesquisa do comando do banco de dados} 
+while($dados = $var_query->fetch_assoc()) { Comandos ENQUANTO a $dados receber dados da pesquisa do comando do banco de dados} 
 
-||| While com fetch_assoc, fetch_assoc manda todos os dados pego do Comando em questão (var_query) para a "$nomevar" 
+||| While com fetch_assoc, fetch_assoc manda todos os dados pego do Comando em questão (var_query) para a "$dados" 
    
-Enquanto tiver dados e ele  mandar para a var ele executa a ação do {bloco} (que poderia ser uma exibição dos dados pego por exemplo usando a tal "$nomevar" que recebeu o dado)
+Enquanto tiver dados e ele  mandar para a var ele executa a ação do {bloco} (que poderia ser uma exibição dos dados pego por exemplo usando a tal var $dados["atributo"] que recebeu os dados)
+
+*$dados["atributo"] por que é um array Associativo, ai o "atributo" é o nome do campo da linha SQL pega
 
  
 
+$busca_segura = $mysqli->real_escape_string($_GET["name_input"]); ||| Deixa o valor de busca seguro para interagir via GET com o banco, usado geralmente quando é o usuario q da um valor pra busca
+
+*$_GET pega o valor do elemento (de um input por exemplo) onde o attr "name" é igual ao requisitado no [""] ???
+
+*$mysqli é a var da conexão do banco
+
+exemplo* Quando fosse pegar algo do banco via busca do usuario com o GET, usaria a segura$nça do comando "real_escape_string" em uma var: SELECT * FROM nome_tabela WHERE dado LIKE '%$busca_segura%'
 
 
 
